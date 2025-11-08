@@ -100,9 +100,10 @@ void Render::build_output_filename() {
 		if (num > 1)
 			output_filename += std::format(" ({})", num);
 
-		output_filename += "." + this->m_settings.advanced.video_container;
+                output_filename += "." + this->m_settings.advanced.video_container;
 
-		this->m_output_path = output_folder / output_filename;
+                // Build the path from UTF-8 to keep non-ASCII characters intact.
+                this->m_output_path = output_folder / std::filesystem::u8path(output_filename);
 
 		num++;
 	}
