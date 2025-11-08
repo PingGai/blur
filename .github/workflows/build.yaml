@@ -1,6 +1,13 @@
 name: Build
 
-on: [push]
+on:
+  # 手动按钮
+  workflow_dispatch: {}
+  # 推送触发（含普通提交和打 tag）
+  push:
+    branches: [ main ]         # 按需改成你的默认分支
+    tags:
+      - '*'                    # 打任意 tag 都会触发（用于 Release 步骤）
 
 jobs:
   build:
